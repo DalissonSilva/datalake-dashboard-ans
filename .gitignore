@@ -1,0 +1,15 @@
+# Credenciais — NUNCA sobem para o GitHub
+.streamlit/secrets.toml
+.env
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Sistema
+.DS_Store
+Thumbs.db

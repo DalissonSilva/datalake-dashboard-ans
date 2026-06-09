@@ -203,13 +203,47 @@ datalake-dashboard-ans/
 
 ## Roadmap
 
-- [x] Pipeline ANS — Stage e Bronze
-- [x] Camadas Silver e Gold
+### Solução construída — fase a fase
+
+#### Fase 1 — Fundação (Arquitetura e Engenharia)
+- [x] Provisionamento da VM Ubuntu na OCI (Always Free)
+- [x] Configuração do bucket OCI Object Storage
+- [x] Estrutura do projeto Python com Poetry
+- [x] Autenticação via Instance Principal (sem chaves expostas)
+- [x] Utilitários de storage, conexão e helpers
+
+#### Fase 2 — Ingestão (Pipeline ANS)
+- [x] Download automático dos ZIPs da ANS por competência
+- [x] Conversão CSV → Parquet com compressão Snappy
+- [x] Particionamento Hive: `uf=AL/ano_mes=YYYY-MM`
+- [x] Upload confirmado para OCI Stage (head_object)
+- [x] Carga incremental Stage → Bronze no Snowflake
+- [x] 85 competências carregadas (2019-04 → 2026-04)
+
+#### Fase 3 — Governança
+- [x] Tabela `pipeline_execution` no Autonomous DB
+- [x] Controle incremental por competência
+- [x] Estratégia INSERT + UPDATE com histórico auditável
+- [x] Status: `running`, `success`, `error`, `skipped`
+- [x] Governança genérica — serve qualquer pipeline futuro
+
+#### Fase 4 — Transformação (Silver e Gold)
+- [x] Camada Silver — limpeza, tipagem e padronização
+- [x] Camada Gold — agregações e KPIs por competência
+- [x] Views: evolução mensal, ranking operadoras,
+      faixa etária, modalidade e resumo geral
+
+#### Fase 5 — Catálogo de Indicadores (DAMA)
+- [x] Definição dos indicadores com data owner corporativo
+- [x] Ficha técnica: código, regra, nível, natureza, fonte
+- [x] Padrão DAMA-DMBOK — regras imutáveis pelas áreas consumidoras
+- [x] Glossário público no dashboard
+
+#### Fase 6 — Entrega (Dashboard)
 - [x] Dashboard público no Streamlit Cloud
-- [x] Glossário de indicadores (padrão DAMA)
-- [ ] Pipeline de dados financeiros (68 ativos globais)
-- [ ] Camada de qualidade de dados
-- [ ] Modelos de previsão (séries temporais)
+- [x] Leitura via Parquet público no bucket Gold OCI
+- [x] Sem dependência de Snowflake após exportação
+- [x] 5 páginas: análise, operadoras, perfil, glossário, governança
 
 ---
 

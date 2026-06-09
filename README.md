@@ -45,15 +45,40 @@ adotando o padrão **Medallion** (Bronze, Silver, Gold) e práticas profissionai
 ---
 
 ## Contexto de Negócio
-
-> **Problema:** Em organizações de grande porte, é comum que múltiplas áreas calculem o mesmo
-> indicador com regras divergentes, gerando inconsistências nos relatórios gerenciais e
-> dificultando a tomada de decisão baseada em dados.
-
-**Solução adotada:** centralização das definições em um repositório único de indicadores,
-sob a responsabilidade de um **Data Owner corporativo**. As áreas consomem os indicadores,
-mas não alteram suas regras de cálculo — garantindo consistência e rastreabilidade,
-em conformidade com o framework **DAMA-DMBOK**.
+ 
+### O problema organizacional
+ 
+Em organizações de grande porte, é comum que múltiplas áreas calculem
+o mesmo indicador com regras divergentes — cada setor mantém sua própria
+planilha, sua própria definição e seu próprio critério de extração.
+O resultado é previsível: reuniões onde ninguém concorda com os números,
+relatórios gerenciais inconsistentes e decisões tomadas sobre bases frágeis.
+ 
+> Esta não é uma situação hipotética. É uma dor real, vivenciada em
+> projetos anteriores, onde indicadores estratégicos como volume de
+> beneficiários ativos eram calculados de formas diferentes por cada
+> área — Financeiro, Operações e TI chegavam a números distintos para
+> o mesmo período, sobre a mesma base de dados.
+ 
+### O problema específico — Saúde Suplementar em Alagoas
+ 
+O estado de Alagoas possui dezenas de operadoras de planos de saúde
+atuando simultaneamente, com dados dispersos e sem padronização.
+Gestores da Secretaria de Saúde precisavam responder perguntas como:
+ 
+- Quantos alagoaneses têm plano de saúde ativo hoje?
+- Quais operadoras concentram maior volume de cancelamentos?
+- Como evoluiu a cobertura de saúde suplementar nos últimos 7 anos?
+- Qual o perfil etário e por sexo dos beneficiários?
+Sem uma plataforma de dados estruturada, essas respostas dependiam
+de planilhas manuais, regras inconsistentes entre áreas e ausência
+de rastreabilidade — dor real vivenciada em projetos anteriores.
+ 
+### A solução adotada
+ 
+Centralização das definições em um **repositório único de indicadores**,
+sob a responsabilidade de um **Data Owner corporativo**. As áreas
+consomem os indicadores — mas não alteram suas regras de cálculo.
 
 ---
 

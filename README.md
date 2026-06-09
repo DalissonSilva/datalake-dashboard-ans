@@ -30,7 +30,7 @@ ANS Dados Abertos
 ## Executar localmente
 
 ```bash
-git clone https://github.com/SEU-USUARIO/datalake-dashboard.git
+git clone https://github.com/DalissonSilva/datalake-dashboard-ans.git
 cd datalake-dashboard
 pip install -r requirements.txt
 streamlit run app.py

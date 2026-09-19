@@ -40,14 +40,26 @@ as áreas consomem o indicador, mas não alteram a regra de cálculo.
 
 ## Arquitetura
 
-![Arquitetura: da ANS ao dashboard, em arquitetura medalhão](docs/images/ans_arquitetura.png)
+![Arquitetura: da ANS ao dashboard, em arquitetura medalhão](docs/images/arquitetura.png)
 
 O pipeline combina um **Data Lake** (OCI Object Storage) com um
-**Data Warehouse** (Snowflake), ligados por scripts Python rodando numa
-VM da OCI. Toda carga é registrada no **Autonomous Database**, que
-funciona como fonte de verdade da governança — não é um log solto, é uma
-tabela consultável (`pipeline_execution`) com status, volume processado
-e janela de execução de cada competência.
+**Data Warehouse** (Snowflake) — mas o ponto que mais importa aqui não é
+a lista de tecnologias, é **onde elas rodam**.
+
+Nenhum script roda na minha máquina local e depois só "publica" um
+resultado. A extração, a gravação do Parquet no bucket Stage e o
+`COPY INTO` que carrega a camada Bronze no Snowflake — tudo isso é
+**Python executando dentro de uma VM Compute da própria OCI** (Ubuntu,
+tier Always Free), agendado via cron. A VM se autentica na OCI usando
+**Instance Principal**, então não existe chave de API exposta em lugar
+nenhum do código — a identidade vem da própria instância.
+
+O **Autonomous Database**, que registra cada carga (`pipeline_execution`:
+status, volume, janela de execução), também é um recurso provisionado na
+OCI, escrito pelos mesmos scripts que rodam na VM. Ou seja: Compute,
+Object Storage e banco de governança — as três peças de infraestrutura
+mais usadas em engenharia de dados na nuvem — estão todas ativas e
+integradas neste projeto, não apenas citadas.
 
 ## Camadas de dados
 
